@@ -2,29 +2,26 @@ import json
 import csv
 import os
 
-with open(os.path.join(os.path.dirname(__file__),
-                       './ip_addresses.json')) as ip_file:
-    cities = json.load(ip_file)
-    with open(os.path.join(os.path.dirname(__file__),
-                           './txzips.json')) as zip_file:
-        zips = json.load(zip_file)
-        data = {"state": ["TX", "Texas"], "cities": {}}
-        for key in cities["TX"]:
-            data["cities"][key] = {
-                "ip_addresses": cities["TX"][key],
-                "zip_codes": []
-            }
+with open("IP2LOCATION-LITE-DB9.CSV") as f:
 
-            for zipKey in zips["zip_codes"]:
-                if zipKey["city"] == key:
-                    data["cities"][key]["zip_codes"].append({
-                        "zip":
-                        zipKey["zip"],
-                        "countyname":
-                        zipKey["countyname"],
-                        "pop":
-                        zipKey["pop"],
-                    })
+    def long2DotIP(ipnum):
+        return str(int(ipnum / 16777216) % 256) + "." + str(
+            int(ipnum / 65536) % 256) + "." + str(
+                int(ipnum / 256) % 256) + "." + str(ipnum % 256)
 
-with open("tx.json", 'w') as f:
+    reader = csv.reader(f)
+    next(reader)
+    data = []
+    for row in reader:
+        if row[4] == 'Texas':
+            data.append({
+                "ip_address_range": {
+                    "low": long2DotIP(int(row[0])),
+                    "high": long2DotIP(int(row[1])),
+                },
+                "city": row[5],
+                "zip": row[8]
+            })
+
+with open("tx_ip_by_zip.json", 'w') as f:
     json.dump(data, f, indent=4)
