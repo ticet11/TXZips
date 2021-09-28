@@ -1,12 +1,9 @@
 import json
-import os
 import random
 
-with open(os.path.join(os.path.dirname(__file__),
-                       './tx_ip_by_zip.json')) as ip_file:
+with open('../data/tx_ip_by_zip.json') as ip_file:
     zipIPObjs = json.load(ip_file)
-    with open(os.path.join(os.path.dirname(__file__),
-                           './txzips.json')) as zip_file:
+    with open('../data/txzips.json') as zip_file:
         zipObjs = json.load(zip_file)['zip_codes']
         data = {}
         for zipObj in zipObjs:
@@ -45,5 +42,5 @@ with open(os.path.join(os.path.dirname(__file__),
                 ],
                                                                           k=2)
 
-with open("tx.json", 'w') as f:
+with open("../data/tx.json", 'w') as f:
     json.dump(data, f, indent=4)

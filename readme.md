@@ -1,6 +1,18 @@
-# TX Zips - CSV to JSON
+# TX Zips
 
-Just a quick script I put together to take all the Texas zip codes out of a csv file of US zip codes and put them in a JSON file. That's what it was, anyway. Then, I needed to get more data from other sources and less data from original sources and now this has done a lot. The ultimate goal is what you see in the tx.json file, a dict of zip codes, which all have a city, county, population, and list of ip address ranges.
+I was recently contributing to a project that needed Texas data, including zip codes, cities, ip addresses, and others. This is a combination of scripts I wrote to retrieve and format the data and write it to JSON files.
+
+## What's included?
+
+1. **count** - counts and prints the number of unique cities and zips in JSON file to make sure data wasn't lost during the conversion.
+
+2. **csvToJSON** - retrieve, format, and write data from csv file to JSON file.
+
+3. **cumulitiveWeights** - retrieves populations for each zip code from JSON file and writes them, as a cum-weight list, to a JSON file.
+
+4. **getZips** - retrieves a random zip code from JSON file and prints a location dict, including city, state, county, and zip code.
+
+5. **mergeData** - retrieves location data and ip addresses from JSON. Writes location data, including location specific ip ranges to a JSON file. If script doesn't find an ip range for a specific zip code, it will include 2 ip ranges from a list of the most common ip ranges in Texas.
 
 ## Attribution
 

@@ -1,9 +1,6 @@
 import json
-import os
-import random
 
-with open(os.path.join(os.path.dirname(__file__),
-                       './txzips.json')) as zips_file:
+with open('../data/txzips.json') as zips_file:
     zips = json.load(zips_file)
 
 data = {"zipweights": []}
@@ -15,5 +12,5 @@ for zipObj in list(zips["texaszips"]):
     data["zipweights"].append(weight)
     i = i + 1
 
-with open("cumuweights.json", 'w') as f:
+with open("../data/cumuweights.json", 'w') as f:
     json.dump(data, f, indent=4)
