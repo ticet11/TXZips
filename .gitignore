@@ -1,1 +1,5 @@
 *.csv
+
+*.jar
+.git.bfg-report
+
