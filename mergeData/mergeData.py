@@ -41,6 +41,5 @@ with open('../data/tx_ip_by_zip.json') as ip_file:
                     '16.186.144.0/21', '16.186.152.0/23', '16.186.154.0/24'
                 ],
                                                                           k=2)
-#TODO-Brian: .gitignore csv
 with open("../data/tx.json", 'w') as f:
     json.dump(data, f, indent=4)
